@@ -6,9 +6,11 @@ import App from './App.vue';
 
 Vue.use(VueRouter);
 import Home from './components/Home';
+import VenueNew from './components/VenueNew';
 
 const routes = [
-  { path: '/', component: Home }
+  { path: '/', component: Home },
+  { path: '/venues/new', component: VenueNew }
 ];
 
 const router = new VueRouter({

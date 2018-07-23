@@ -11,6 +11,7 @@
       <div class="navbar-menu" v-bind:class="{ 'is-active': navIsOpen }">
         <div class="navbar-end">
           <router-link to="/" class="navbar-item">Home</router-link>
+          <router-link to="/venues/new" class="navbar-item">Add Venue</router-link>
         </div>
       </div>
     </nav>
