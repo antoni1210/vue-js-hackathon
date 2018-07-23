@@ -24,14 +24,19 @@ import axios from 'axios';
   },
 
   mounted() {
-    axios
-      .get('https://maps.googleapis.com/maps/api/place/radarsearch/application/json?location=51.503186,-0.126446&radius=5000&type=movie_theatre&key=AIzaSyD5l8LZyITAru4A3U8nyx-riblGU0yt6Cw')
-      .then(res => {
-        this.data.venues = res.results;
-        console.log(res);
-      });
+    const config = {
+      headers: { API_KEY: 'AIzaSyDdsDypPEp9X7T8qg-p41_pz_c2EYsqr8Y' }
+    }
+    axios.get('https://maps.googleapis.com/maps/api/place/radarsearch/application/json?location=51.503186,-0.126446&radius=5000&type=movie_theatre', config)
 
-  }
+  //   axios({
+  //     method: 'GET',
+  //     url: 'https://maps.googleapis.com/maps/api/place/radarsearch/application/json?location=51.503186,-0.126446&radius=5000&type=movie_theatre',
+  // })
+  //   .then(res => {
+  //   console.log(res.data);
+  // });
+    }
   };
 </script>
 
