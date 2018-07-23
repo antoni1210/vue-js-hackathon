@@ -4,11 +4,15 @@ import App from './App.vue';
 
 // Vue.config.productionTip = false;
 
+// import './assets/scss/style.scss';
+
 Vue.use(VueRouter);
 import Home from './components/Home';
+import VenueShow from './components/VenueShow';
 
 const routes = [
-  { path: '/', component: Home }
+  { path: '/', component: Home },
+  { path: '/venues/', component: VenueShow }
 ];
 
 const router = new VueRouter({
