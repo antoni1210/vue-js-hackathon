@@ -169,14 +169,20 @@ export default {
               const venueInfo = document.querySelector('#venueInfo');
               venueInfo.innerHTML = `
               <div class="card">
-              <div class="card-header">
-              <h1 class="title is2">${this.chosenVenue.name}</h1>
-              </div>
-              <div class="card-image">
-              <figure class="image is-96x96">
-              <img v-bind:src="chosenVenue.bestPhoto.prefix this.chosenVenue.bestPhoto.suffix" />
-              </figure>
-              </div>
+                <div class="card-header">
+                  <h1 class="title is2">${this.chosenVenue.name}</h1>
+                </div>
+                <div class="card-content">
+                  ${this.chosenVenue.page.pageInfo.description}
+                </div>
+                <div class="card-footer">
+                  <div class="card-footer-item">
+                    ${this.chosenVenue.location.address}
+                  </div>
+                  <div class="card-footer-item">
+                    ${this.chosenVenue.contact.phone}
+                  </div>
+                </div>
               </div>
               `
             });
