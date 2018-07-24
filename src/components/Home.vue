@@ -8,7 +8,7 @@
         <li v-for="venue in venues">{{ venue.name }}</li>
       </ul> -->
       <div class="columns">
-        <div class="column">
+        <div class="column is-8">
           <div class="field">
             <div class="label">Please select a category</div>
             <div class="control">
@@ -29,10 +29,10 @@
               <button class="button" v-on:click="changeCategory">Click me!</button>
             </div>
 
-            <!-- <div class="control">
-              <button class="button is-link">Submit</button>
-            </div> -->
           </div>
+        </div>
+        <div class="column is-4" id="venueInfo">
+          Venue Info Here. Click a Marker for more.
         </div>
       </div>
 

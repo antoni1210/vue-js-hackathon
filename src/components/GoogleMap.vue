@@ -29,6 +29,8 @@ export default {
         })
         marker.addListener('click', (target) => {
           console.log(venue);
+          const venueInfo = document.querySelector('#venueInfo');
+          venueInfo.innerHTML = `<div>${venue.name}</div>`
           // this.infoWindow.setContent(`
           //   <a href="/#/venues/${venue._id}">
           //   <h3>${venue.name}</h3>
