@@ -4,7 +4,7 @@ import App from './App.vue';
 
 // Vue.config.productionTip = false;
 
-// import './assets/scss/style.scss';
+import './assets/scss/style.scss';
 
 Vue.use(VueRouter);
 import Home from './components/Home';
