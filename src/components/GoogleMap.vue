@@ -3,144 +3,149 @@
 </template>
 
 <script>
-
+import axios from 'axios'
 /* global google */
 export default {
   name: 'GoogleMap',
   props: ['center', 'venues'],
+  data() {
+    return {
+      chosenVenue: {}
+    }
+  },
   mounted () {
     this.map = new google.maps.Map(this.$el, {
       center: this.center || { lat: 51.515, lng: -0.078 },
       zoom: 13,
       styles: [
-    {
-        "featureType": "water",
-        "elementType": "geometry",
-        "stylers": [
+        {
+          "featureType": "water",
+          "elementType": "geometry",
+          "stylers": [
             {
-                "color": "#ffdfa6"
+              "color": "#ffdfa6"
             }
-        ]
-    },
-    {
-        "featureType": "landscape",
-        "elementType": "geometry",
-        "stylers": [
+          ]
+        },
+        {
+          "featureType": "landscape",
+          "elementType": "geometry",
+          "stylers": [
             {
-                "color": "#b52127"
+              "color": "#b52127"
             }
-        ]
-    },
-    {
-        "featureType": "poi",
-        "elementType": "geometry",
-        "stylers": [
+          ]
+        },
+        {
+          "featureType": "poi",
+          "elementType": "geometry",
+          "stylers": [
             {
-                "color": "#c5531b"
+              "color": "#c5531b"
             }
-        ]
-    },
-    {
-        "featureType": "road.highway",
-        "elementType": "geometry.fill",
-        "stylers": [
+          ]
+        },
+        {
+          "featureType": "road.highway",
+          "elementType": "geometry.fill",
+          "stylers": [
             {
-                "color": "#74001b"
+              "color": "#74001b"
             },
             {
-                "lightness": -10
+              "lightness": -10
             }
-        ]
-    },
-    {
-        "featureType": "road.highway",
-        "elementType": "geometry.stroke",
-        "stylers": [
+          ]
+        },
+        {
+          "featureType": "road.highway",
+          "elementType": "geometry.stroke",
+          "stylers": [
             {
-                "color": "#da3c3c"
+              "color": "#da3c3c"
             }
-        ]
-    },
-    {
-        "featureType": "road.arterial",
-        "elementType": "geometry.fill",
-        "stylers": [
+          ]
+        },
+        {
+          "featureType": "road.arterial",
+          "elementType": "geometry.fill",
+          "stylers": [
             {
-                "color": "#74001b"
+              "color": "#74001b"
             }
-        ]
-    },
-    {
-        "featureType": "road.arterial",
-        "elementType": "geometry.stroke",
-        "stylers": [
+          ]
+        },
+        {
+          "featureType": "road.arterial",
+          "elementType": "geometry.stroke",
+          "stylers": [
             {
-                "color": "#da3c3c"
+              "color": "#da3c3c"
             }
-        ]
-    },
-    {
-        "featureType": "road.local",
-        "elementType": "geometry.fill",
-        "stylers": [
+          ]
+        },
+        {
+          "featureType": "road.local",
+          "elementType": "geometry.fill",
+          "stylers": [
             {
-                "color": "#990c19"
+              "color": "#990c19"
             }
-        ]
-    },
-    {
-        "elementType": "labels.text.fill",
-        "stylers": [
+          ]
+        },
+        {
+          "elementType": "labels.text.fill",
+          "stylers": [
             {
-                "color": "#ffffff"
+              "color": "#ffffff"
             }
-        ]
-    },
-    {
-        "elementType": "labels.text.stroke",
-        "stylers": [
+          ]
+        },
+        {
+          "elementType": "labels.text.stroke",
+          "stylers": [
             {
-                "color": "#74001b"
+              "color": "#74001b"
             },
             {
-                "lightness": -8
+              "lightness": -8
             }
-        ]
-    },
-    {
-        "featureType": "transit",
-        "elementType": "geometry",
-        "stylers": [
+          ]
+        },
+        {
+          "featureType": "transit",
+          "elementType": "geometry",
+          "stylers": [
             {
-                "color": "#6a0d10"
+              "color": "#6a0d10"
             },
             {
-                "visibility": "on"
+              "visibility": "on"
             }
-        ]
-    },
-    {
-        "featureType": "administrative",
-        "elementType": "geometry",
-        "stylers": [
+          ]
+        },
+        {
+          "featureType": "administrative",
+          "elementType": "geometry",
+          "stylers": [
             {
-                "color": "#ffdfa6"
+              "color": "#ffdfa6"
             },
             {
-                "weight": 0.4
+              "weight": 0.4
             }
-        ]
-    },
-    {
-        "featureType": "road.local",
-        "elementType": "geometry.stroke",
-        "stylers": [
+          ]
+        },
+        {
+          "featureType": "road.local",
+          "elementType": "geometry.stroke",
+          "stylers": [
             {
-                "visibility": "off"
+              "visibility": "off"
             }
-        ]
-    }
-]
+          ]
+        }
+      ]
     });
     this.infoWindow = new google.maps.InfoWindow();
   },
@@ -157,31 +162,40 @@ export default {
           map: this.map
         })
         marker.addListener('click', (target) => {
-          console.log(venue);
+
+          axios.get(`https://api.foursquare.com/v2/venues/${venue.id}?&client_id=QXJWRY5OPPFQ1RKWHMPWPFV3OSS5MQBFU0KNH22WOJASLAOT&client_secret=RMBIJZ3JWOO0DRXLSIWN5I21UX5V5TAZQBXB3CBUYVRTG3GJ&v=20180724`)
+            .then(res => {
+              this.chosenVenue = res.data.response.venue;
+            });
+
           const venueInfo = document.querySelector('#venueInfo');
-          venueInfo.innerHTML = `<div>${venue.name}</div>`
-          // this.infoWindow.setContent(`
-          //   <a href="/#/venues/${venue._id}">
-          //   <h3>${venue.name}</h3>
-          //   <p>${venue.address}</p>
-          //   </a>
-          //   `);
-          //   this.infoWindow.open(this.map, marker);
+          venueInfo.innerHTML = `
+          <div class="card">
+            <div class="card-header">
+              <h1 class="title is2">${this.chosenVenue.name}</h1>
+              </div>
+            <div class="card-image">
+              <figure class="image is-96x96">
+                <img v-bind:src="chosenVenue.bestPhoto.prefix this.chosenVenue.bestPhoto.suffix" />
+              </figure>
+            </div>
+          </div>
+          `
         });
         return marker;
       });
 
 
-        this.map.panTo(this.bounds.getCenter());
-      },
-      center() {
-        this.map.setCenter(this.center);
-        this.marker = new google.maps.Marker({
-          position: this.center,
-          map: this.map,
-          label: '🎬'
-        });
-      }
+      this.map.panTo(this.bounds.getCenter());
+    },
+    center() {
+      this.map.setCenter(this.center);
+      this.marker = new google.maps.Marker({
+        position: this.center,
+        map: this.map,
+        label: '🎬'
+      });
     }
-  };
-  </script>
+  }
+};
+</script>
