@@ -89,4 +89,13 @@ export default {
 .map {
   height: 400px;
 }
+
+.control {
+  width: 400px;
+}
+
+.select {
+  margin-bottom: 20px;
+}
+
 </style>
