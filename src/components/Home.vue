@@ -2,12 +2,6 @@
 <template>
   <section>
     <h1>Hello World</h1>
-<<<<<<< HEAD
-    <ul>
-      <li v-for="todo in todos">{{ todo.text }}</li>
-    </ul>
-=======
->>>>>>> 4fecf89ee10a5794d304104ddda3ce2ac9fe2a94
   </section>
 </template>
 
