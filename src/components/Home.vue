@@ -26,7 +26,7 @@
         <label class="label">Search</label>
         <div class="control">
           <Autocomplete name="Search" v-bind:handle-place-change="handlePlaceChange"/>
-          <button class="button" v-on:click="changeCategory">Click me!</button>
+          <button class="button is-primary" v-on:click="changeCategory">Click me!</button>
         </div>
 
         <!-- <div class="control">
@@ -88,4 +88,13 @@ export default {
 .map {
   height: 400px;
 }
+
+.control {
+  width: 400px;
+}
+
+.select {
+  margin-bottom: 20px;
+}
+
 </style>

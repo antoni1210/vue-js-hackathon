@@ -154,7 +154,8 @@ export default {
 
         const marker = new google.maps.Marker({
           position: venue.location,
-          map: this.map
+          map: this.map,
+          icon: 'https://image.flaticon.com/icons/svg/36/36896.svg'
         })
         return marker;
       });
@@ -166,7 +167,7 @@ export default {
       this.marker = new google.maps.Marker({
         position: this.center,
         map: this.map,
-        label: '🎬'
+
       });
     }
   }
