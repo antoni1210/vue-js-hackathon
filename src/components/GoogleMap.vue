@@ -11,13 +11,13 @@ export default {
   mounted () {
     this.map = new google.maps.Map(this.$el, {
       center: this.center || { lat: 51.515, lng: -0.078 },
-      zoom: 14
+      zoom: 13
     });
-
     this.infoWindow = new google.maps.InfoWindow();
   },
   watch: {
     venues() {
+      if (this.markers) this.markers.map(marker => marker.setMap(null));
       this.bounds = new google.maps.LatLngBounds();
 
       this.markers = this.venues.map(venue => {
@@ -27,6 +27,7 @@ export default {
           position: venue.location,
           map: this.map
         })
+        return marker;
       });
 
       this.map.panTo(this.bounds.getCenter());
