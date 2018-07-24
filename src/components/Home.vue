@@ -2,12 +2,6 @@
 <template>
   <section>
     <h1>Hello World</h1>
-<<<<<<< HEAD
-    <ul>
-      <li v-for="todo in todos">{{ todo.text }}</li>
-    </ul>
-=======
->>>>>>> 4fecf89ee10a5794d304104ddda3ce2ac9fe2a94
   </section>
 </template>
 
@@ -25,8 +19,14 @@ export default {
   },
 
   mounted() {
-    axios.get('https://restcountries.eu/rest/v2/all')
-      .then(res => console.log(res.data))
+    axios({
+      method: 'GET',
+      url: `https://api.foursquare.com/v2/venues/search?categoryId=4bf58dd8d48988d17f941735&ll=51.5153,0.0725&client_id=QXJWRY5OPPFQ1RKWHMPWPFV3OSS5MQBFU0KNH22WOJASLAOT&client_secret=RMBIJZ3JWOO0DRXLSIWN5I21UX5V5TAZQBXB3CBUYVRTG3GJ&v=20180724`
+    })
+      .then(res => {
+
+        console.log(res.data.response.venues)
+      });
   }
 };
 </script>
