@@ -1,9 +1,7 @@
 
 <template>
   <div>
-    <google-map
-      v-bind:venues="venues"
-      />
+    <google-map v-bind:venues="venues"/>
     <section class="section">
       <div class="container">
         <!-- <ul>
@@ -11,6 +9,7 @@
       </ul> -->
 
       <div class="field">
+
         <div class="label">Please select a category</div>
         <div class="control">
           <div class="select">
@@ -22,10 +21,22 @@
             </select>
           </div>
         </div>
-        <button class="button" v-on:click="changeCategory">Click me!</button>
+
+
+        <label class="label">Search</label>
+        <div class="control">
+          <Autocomplete name="Search" v-bind:handle-place-change="handlePlaceChange"/>
+          <button class="button" v-on:click="changeCategory">Click me!</button>
+        </div>
+
+        <!-- <div class="control">
+          <button class="button is-link">Submit</button>
+        </div> -->
       </div>
     </div>
-  </section>
+  </form>
+
+</section>
 </div>
 </template>
 
@@ -41,17 +52,22 @@ export default {
     return {
       venues: [],
       category: '4bf58dd8d48988d17f941735',
-      location: {}
+      location: {},
+      address: {}
     }
   },
   methods: {
     changeCategory: function() {
-      axios.get(`https://api.foursquare.com/v2/venues/search?categoryId=${this.category}&ll=51.5153,0.0725&client_id=QXJWRY5OPPFQ1RKWHMPWPFV3OSS5MQBFU0KNH22WOJASLAOT&client_secret=RMBIJZ3JWOO0DRXLSIWN5I21UX5V5TAZQBXB3CBUYVRTG3GJ&v=20180724`)
+      axios.get(`https://api.foursquare.com/v2/venues/search?categoryId=${this.category}&ll=${this.location.lat},${this.location.lng}&client_id=QXJWRY5OPPFQ1RKWHMPWPFV3OSS5MQBFU0KNH22WOJASLAOT&client_secret=RMBIJZ3JWOO0DRXLSIWN5I21UX5V5TAZQBXB3CBUYVRTG3GJ&v=20180724`)
       .then(res => {
         this.venues = res.data.response.venues;
       });
-
-
+    },
+    handlePlaceChange({ formatted_address: address, geometry: { location } }) {
+      this.address = address;
+      this.location = location.toJSON();
+      console.log(this.address);
+      console.log(this.location);
     }
   },
 
