@@ -1,34 +1,45 @@
-
 <template>
-  <section>
-    <h1>Hello World</h1>
-<<<<<<< HEAD
-    <ul>
-      <li v-for="todo in todos">{{ todo.text }}</li>
-    </ul>
-=======
->>>>>>> 4fecf89ee10a5794d304104ddda3ce2ac9fe2a94
+  <section class="section">
+    <div class="container">
+      <form  v-on:submit.prevent="handleSubmit()">
+        <div class="field">
+          <label class="label">Search</label>
+          <div class="control">
+            <Autocomplete name="Search" v-bind:handle-place-change="handlePlaceChange"/>
+          </div>
+          <div class="control">
+            <button class="button is-link">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
   </section>
 </template>
 
 <script>
+
 import axios from 'axios';
 import Autocomplete from './Autocomplete';
 
-
 export default {
-  name: 'Home',
+  name: 'VenueSearch',
   data() {
     return {
-      venues: [],
+      venue: {}
+    };
+  },
+  methods: {
+    handlePlaceChange({ formatted_address: address, geometry: { location } }) {
+      this.venue.address = address;
+      this.venue.location = location.toJSON();
+      console.log(this.venue);
     }
   },
-
-  mounted() {
-    axios.get('https://restcountries.eu/rest/v2/all')
-      .then(res => console.log(res.data))
+  components: {
+    Autocomplete
   }
 };
+
 </script>
 
 <style></style>

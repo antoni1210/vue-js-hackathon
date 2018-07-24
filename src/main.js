@@ -8,12 +8,10 @@ import App from './App.vue';
 
 Vue.use(VueRouter);
 import Home from './components/Home';
-import VenueNew from './components/VenueNew';
 import VenueShow from './components/VenueShow';
 
 const routes = [
   { path: '/', component: Home },
-  { path: '/venues/new', component: VenueNew },
   { path: '/venues/', component: VenueShow }
 ];
 
