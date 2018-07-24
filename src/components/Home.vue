@@ -7,32 +7,35 @@
         <!-- <ul>
         <li v-for="venue in venues">{{ venue.name }}</li>
       </ul> -->
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <div class="label">Please select a category</div>
+            <div class="control">
+              <div class="select">
+                <select v-model="category">
+                  <option value="4bf58dd8d48988d17f941735">Cinema</option>
+                  <option value="4bf58dd8d48988d137941735">Theatre</option>
+                  <option value="4bf58dd8d48988d18e941735">Comedy Club</option>
+                  <option value="4bf58dd8d48988d1e5931735">Music Venue</option>
+                </select>
+              </div>
+            </div>
 
-      <div class="field">
 
-        <div class="label">Please select a category</div>
-        <div class="control">
-          <div class="select">
-            <select v-model="category">
-              <option value="4bf58dd8d48988d17f941735">Cinema</option>
-              <option value="4bf58dd8d48988d137941735">Theatre</option>
-              <option value="4bf58dd8d48988d18e941735">Comedy Club</option>
-              <option value="4bf58dd8d48988d1e5931735">Music Venue</option>
-            </select>
+            <label class="label">Search</label>
+            <div class="control">
+              <Autocomplete name="Search" v-bind:handle-place-change="handlePlaceChange"/>
+              <button class="button" v-on:click="changeCategory">Click me!</button>
+            </div>
+
+            <!-- <div class="control">
+              <button class="button is-link">Submit</button>
+            </div> -->
           </div>
         </div>
-
-
-        <label class="label">Search</label>
-        <div class="control">
-          <Autocomplete name="Search" v-bind:handle-place-change="handlePlaceChange"/>
-          <button class="button" v-on:click="changeCategory">Click me!</button>
-        </div>
-
-        <!-- <div class="control">
-          <button class="button is-link">Submit</button>
-        </div> -->
       </div>
+
     </div>
   </form>
 
@@ -66,8 +69,6 @@ export default {
     handlePlaceChange({ formatted_address: address, geometry: { location } }) {
       this.address = address;
       this.location = location.toJSON();
-      console.log(this.address);
-      console.log(this.location);
     }
   },
 

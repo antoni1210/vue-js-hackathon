@@ -27,19 +27,30 @@ export default {
           position: venue.location,
           map: this.map
         })
+        marker.addListener('click', (target) => {
+          console.log(venue);
+          // this.infoWindow.setContent(`
+          //   <a href="/#/venues/${venue._id}">
+          //   <h3>${venue.name}</h3>
+          //   <p>${venue.address}</p>
+          //   </a>
+          //   `);
+          //   this.infoWindow.open(this.map, marker);
+        });
         return marker;
       });
 
-      this.map.panTo(this.bounds.getCenter());
-    },
-    center() {
-      this.map.setCenter(this.center);
-      this.marker = new google.maps.Marker({
-        position: this.center,
-        map: this.map,
-        label: '🎬'
-      });
+
+        this.map.panTo(this.bounds.getCenter());
+      },
+      center() {
+        this.map.setCenter(this.center);
+        this.marker = new google.maps.Marker({
+          position: this.center,
+          map: this.map,
+          label: '🎬'
+        });
+      }
     }
-  }
-};
-</script>
+  };
+  </script>
