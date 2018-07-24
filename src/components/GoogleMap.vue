@@ -163,24 +163,24 @@ export default {
         })
         marker.addListener('click', (target) => {
 
-          axios.get(`https://api.foursquare.com/v2/venues/${venue.id}?&client_id=QXJWRY5OPPFQ1RKWHMPWPFV3OSS5MQBFU0KNH22WOJASLAOT&client_secret=RMBIJZ3JWOO0DRXLSIWN5I21UX5V5TAZQBXB3CBUYVRTG3GJ&v=20180724`)
+          axios.get(`https://api.foursquare.com/v2/venues/${venue.id}?&client_id=XXTV2MIZMSYFKLRUU3DTCCYJK0LTJURZLL34ADQB5DWVQZM4&client_secret=PIRNU5TWFRTOUR5MN3KOQUDLNRGWDHYBCXF4QU15KNFFMPCL&v=20180724`)
             .then(res => {
               this.chosenVenue = res.data.response.venue;
-            });
-
-          const venueInfo = document.querySelector('#venueInfo');
-          venueInfo.innerHTML = `
-          <div class="card">
-            <div class="card-header">
+              const venueInfo = document.querySelector('#venueInfo');
+              venueInfo.innerHTML = `
+              <div class="card">
+              <div class="card-header">
               <h1 class="title is2">${this.chosenVenue.name}</h1>
               </div>
-            <div class="card-image">
+              <div class="card-image">
               <figure class="image is-96x96">
-                <img v-bind:src="chosenVenue.bestPhoto.prefix this.chosenVenue.bestPhoto.suffix" />
+              <img v-bind:src="chosenVenue.bestPhoto.prefix this.chosenVenue.bestPhoto.suffix" />
               </figure>
-            </div>
-          </div>
-          `
+              </div>
+              </div>
+              `
+            });
+
         });
         return marker;
       });

@@ -61,7 +61,7 @@ export default {
   },
   methods: {
     changeCategory: function() {
-      axios.get(`https://api.foursquare.com/v2/venues/search?categoryId=${this.category}&ll=${this.location.lat},${this.location.lng}&client_id=QXJWRY5OPPFQ1RKWHMPWPFV3OSS5MQBFU0KNH22WOJASLAOT&client_secret=RMBIJZ3JWOO0DRXLSIWN5I21UX5V5TAZQBXB3CBUYVRTG3GJ&v=20180724`)
+      axios.get(`https://api.foursquare.com/v2/venues/search?categoryId=${this.category}&ll=${this.location.lat},${this.location.lng}&client_id=XXTV2MIZMSYFKLRUU3DTCCYJK0LTJURZLL34ADQB5DWVQZM4&client_secret=PIRNU5TWFRTOUR5MN3KOQUDLNRGWDHYBCXF4QU15KNFFMPCL&v=20180724`)
       .then(res => {
         this.venues = res.data.response.venues;
       });
@@ -73,7 +73,7 @@ export default {
   },
 
   mounted() {
-    axios.get(`https://api.foursquare.com/v2/venues/search?categoryId=${this.category}&ll=51.5153,0.0725&client_id=QXJWRY5OPPFQ1RKWHMPWPFV3OSS5MQBFU0KNH22WOJASLAOT&client_secret=RMBIJZ3JWOO0DRXLSIWN5I21UX5V5TAZQBXB3CBUYVRTG3GJ&v=20180724`)
+    axios.get(`https://api.foursquare.com/v2/venues/search?categoryId=${this.category}&ll=51.5153,0.0725&client_id=XXTV2MIZMSYFKLRUU3DTCCYJK0LTJURZLL34ADQB5DWVQZM4&client_secret=PIRNU5TWFRTOUR5MN3KOQUDLNRGWDHYBCXF4QU15KNFFMPCL&v=20180724`)
     .then(res => {
       this.venues = res.data.response.venues;
     });
