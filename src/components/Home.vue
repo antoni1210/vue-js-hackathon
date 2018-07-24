@@ -22,8 +22,8 @@
             </select>
           </div>
         </div>
+        <button class="button" v-on:click="changeCategory">Click me!</button>
       </div>
-      <button class="button" v-on:click="changeCategory">Click me!</button>
     </div>
   </section>
 </div>
